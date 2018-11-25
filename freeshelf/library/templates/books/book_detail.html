@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load book_button %}
+{% block content %}
+
+ <div class="grid-x book-shelf">
+    
+        <div class="cell medium-auto">
+            <h2>{{ book.title }}</h2>
+            <p>{{ book.author }}</p>
+            <p>{{ book.description }}</p>
+
+            <p id="book-info">
+            <span>{{ book.comment_set.count }} Comment{{ book.comment_set.count|pluralize }}</span> 
+            | <span class="favorite-count" id="{{ book.slug }}">{{ book.favorite_set.count }}</span> Favorite{{ book.favorite_set.count|pluralize }}
+            </p>
+            
+            {% if user.is_authenticated %}
+                {% show_buttons book user %}
+            {% endif %}
+            
+            <a class="button medium medium-down-expanded" href="{{ book.url }}" target="_blank">
+                <i class="fas fa-book-open"></i> Link to Book
+            </a>
+        </div>
+        {% if book.image %}
+        <div class="cell small-12 medium-4">
+            <img src="{{ book.image.url }}" alt="" />
+        </div>
+        {% endif %}
+        
+        
+        
+    </div>
+
+    <div class="grid-x comment-section">
+    
+        <div class="cell medium-auto">
+            <div class="comments">
+                <h2>Comments</h2>
+                {% for comment in comments %}
+                    <div class="comment">
+                        <p><strong><a href="{% url 'user_profile' slug=comment.user.slug %}">{{ comment.user }}</a> - {{ comment.created }}</strong></p>
+                        <p>{{ comment.comment }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+            <form action="" method="POST" role="form">
+                {% csrf_token %}
+                {{ form.comment.label_tag }}
+                {{ form.comment }}
+                <button type="submit" class="button">Submit</button>
+            </form>
+            
+        </div>
+        
+        
+    </div>
+    
+
+{% endblock content %}

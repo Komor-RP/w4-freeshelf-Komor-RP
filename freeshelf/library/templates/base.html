@@ -1,0 +1,54 @@
+{% load staticfiles %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+    {% block title %}
+        Freeshelf
+    {% endblock title %}
+    </title>
+    
+    <link href="https://fonts.googleapis.com/css?family=EB+Garamond|PT+Sans" rel="stylesheet"> 
+    <link href="https://pro.fontawesome.com/releases/v5.2.0/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.1/dist/css/foundation.min.css" integrity="sha256-1mcRjtAxlSjp6XJBgrBeeCORfBp/ppyX4tsvpQVCcpA= sha384-b5S5X654rX3Wo6z5/hnQ4GBmKuIJKMPwrJXn52ypjztlnDK2w9+9hSMBz/asy9Gw sha512-M1VveR2JGzpgWHb0elGqPTltHK3xbvu3Brgjfg4cg5ZNtyyApxw/45yHYsZ/rCVbfoO5MSZxB241wWq642jLtA==" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/motion-ui@1.2.3/dist/motion-ui.min.css" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" >
+    
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <header>
+        <h1>Freeshelf <i class="fas fa-books"></i></h1>
+        <div class="top-bar align-center">
+            <ul class="menu">
+                <li><a href="{% url 'all_books' %}">All Books</a></li>
+                <li><a href="{% url 'categories' %}">All Categories</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'favorites' %}">Favorites</a></li>
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'register' %}">Register</a></li>
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                {% endif %}
+
+            </ul>
+        
+        </div>
+
+
+    </header>
+    
+
+    {% block content %}
+    {% endblock content %}
+    
+    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.1/dist/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

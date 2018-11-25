@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load book_render %}
+
+{% block title %}
+    Category Page {{ block.super }}
+{% endblock title %}
+{% block content %}
+    <h1>{{ category }} Books</h1>
+    
+    {% book_render user books %}
+    
+{% endblock content %}

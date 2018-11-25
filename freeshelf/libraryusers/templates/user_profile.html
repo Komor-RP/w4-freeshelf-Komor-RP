@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{  user.username }}'s Profile Page
+{% endblock title %}
+{% block content %}
+    <h1>{{  user.username }}'s Profile Page</h1>
+
+    <div class="grid-x comment-section">
+    
+        <div class="cell medium-auto">
+            <div class="comments">
+                <h2>Past Comments</h2>
+                {% for comment in comments %}
+                    <div class="comment">
+                        <p><strong>{{ comment.user }} - {{ comment.created }}</strong></p>
+                        <p>{{ comment.comment }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+            
+        </div>
+        
+        
+    </div>
+{% endblock content %}

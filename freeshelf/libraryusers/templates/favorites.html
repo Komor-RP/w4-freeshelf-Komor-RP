@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load book_button %}
+{% load book_render %}
+
+{% block content %}
+<h1>Favorited Books</h1>
+<div id="favorites-list">
+{% if books %}
+    {% book_render user books %}
+{% else %}
+<p>You don't have any favorited books</p>
+{% endif %}
+
+</div>
+
+
+
+
+{% endblock content %}

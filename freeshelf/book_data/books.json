@@ -1,0 +1,48 @@
+[
+    {
+        "title": "Dive Into Python 3",
+        "author": "Mark Pilgrim",
+        "description": "Convention dictates that I should bore you with the fundamental building blocks of programming, so we can slowly work up to building something useful. Let’s skip all that. Here is a complete, working Python program. It probably makes absolutely no sense to you. Don’t worry about that, because you’re going to dissect it line by line. But read through it first and see what, if anything, you can make of it.",
+        "url": "http://getpython3.com/diveintopython3/",
+        "image": "diveintopython.jpg"
+    },
+    {
+        "title": "How to Think Like a Computer Scientist",
+        "author": "Brad Miller and David Ranum",
+        "description": "The goal of this book is to teach you to think like a computer scientist. This way of thinking combines some of the best features of mathematics, engineering, and natural science. Like mathematicians, computer scientists use formal languages to denote ideas (specifically computations). Like engineers, they design things, assembling components into systems and evaluating tradeoffs among alternatives. Like scientists, they observe the behavior of complex systems, form hypotheses, and test predictions.",
+        "url": "http://interactivepython.org/courselib/static/thinkcspy/index.html"
+    },
+    {
+        "title": "Tiny Python 3.6 Notebook",
+        "author": "Matt Harrison",
+        "description": "Warning, this is not an introduction to Python. Rather it is a notebook containing curated examples for Python 3 as well as the new features found in Python 3.6. It is designed to accompany technical corporate training offered by the author or aid those who want a quick refresher to the Python syntax.",
+        "url": "https://github.com/mattharrison/Tiny-Python-3.6-Notebook",
+        "image": "tinypy36.png"
+    },
+    {
+        "title": "Introduction to Programming with Python",
+        "author": "OpenTechSchool",
+        "description": "Ok, so python is this thing called a programming language. It takes text that you’ve written (usually referred to as code), turns it into instructions for your computer, and runs those instructions. We’ll be learning how to write code to do cool and useful stuff. No longer will you be bound to use others’ programs to do things with your computer - you can make your own! Practically, Python is just another program on your computer. The first thing to learn is how to use and interact with it. There are in fact many ways to do this; the first one to learn is to interact with python’s interpreter, using your operating system’s (OS) console.",
+        "url": "http://opentechschool.github.io/python-beginners/en/"
+    },
+    {
+        "title": "Learn Pandas",
+        "author": "Hernan Rojas",
+        "description": "The pandas library is used for all the data analysis excluding a small piece of the data presentation section. The matplotlib library will only be needed for the data presentation section. Importing the libraries is the first step we will take in the lesson.",
+        "url": "https://bitbucket.org/hrojas/learn-pandas"
+    },
+    {
+        "title": "Learning JavaScript Design Patterns",
+        "author": "Addy Osmani",
+        "description": "Design patterns are reusable solutions to commonly occurring problems in software design. They are both exciting and a fascinating topic to explore in any programming language. One reason for this is that they help us build upon the combined experience of many developers that came before us and ensure we structure our code in an optimized way, meeting the needs of problems we're attempting to solve. Design patterns also provide us a common vocabulary to describe solutions. This can be significantly simpler than describing syntax and semantics when we're attempting to convey a way of structuring a solution in code form to others. In this book we will explore applying both classical and modern design patterns to the JavaScript programming language.",
+        "url": "https://addyosmani.com/resources/essentialjsdesignpatterns/book/",
+        "image": "learning-javascript-design-patterns.jpg"
+    },
+    {
+        "title": "Eloquent JavaScript",
+        "author": "Marijn Haverbeke",
+        "description": "This is a book about instructing computers. Computers are about as common as screwdrivers today, but they are quite a bit more complex, and making them do what you want them to do isn’t always easy. If the task you have for your computer is a common, well-understood one, such as showing you your email or acting like a calculator, you can open the appropriate application and get to work. But for unique or open-ended tasks, there probably is no application. That is where programming may come in. Programming is the act of constructing a program—a set of precise instructions telling a computer what to do. Because computers are dumb, pedantic beasts, programming is fundamentally tedious and frustrating.",
+        "url": "http://eloquentjavascript.net/",
+        "image": "eloquent-js.jpg"
+    }
+]

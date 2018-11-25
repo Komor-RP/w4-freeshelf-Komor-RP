@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load book_button %}
+{% load book_render %}
+{% block title %}
+    All Books - {{ block.super }}
+{% endblock title %}
+{% block content %}
+
+<div class="sort-buttons button-group align-right">
+        <a class="button" name="title-ascending">Sort by Title</a>
+        <a class="button" name="date-ascending">Sort by Date Added</a>
+    </div>
+
+
+    {% book_render user books %}
+
+
+{% endblock content %}

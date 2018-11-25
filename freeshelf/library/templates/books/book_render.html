@@ -1,0 +1,38 @@
+{% load book_button %}
+    
+{% for book in books %}
+
+    <div class="grid-x book-shelf">
+    
+        <div class="cell medium-auto">
+            <h2>{{ book.title }}</h2>
+            <p>{{ book.author }}</p>
+            <p>{{ book.description }}</p>
+            <p id="book-info">
+            <span>{{ book.comment_set.count }} Comment{{ book.comment_set.count|pluralize }}</span> 
+            | <span class="favorite-count" id="{{ book.slug }}">{{ book.favorite_set.count }}</span> Favorite{{ book.favorite_set.count|pluralize }}
+            </p>
+            <a class="button medium medium-down-expanded" href="{% url 'book_detail' slug=book.slug %}">
+                <i class="fas fa-bookmark"></i> View Details
+            </a>
+            
+            {% if user.is_authenticated %}
+                {% show_buttons book user %}
+            {% endif %}
+            
+            <a class="button medium medium-down-expanded" href="{{ book.url }}" target="_blank">
+                <i class="fas fa-book-open"></i> Link to Book
+            </a>
+        </div>
+        {% if book.image %}
+        <div class="cell small-12 medium-4">
+            <img src="{{ book.image.url }}" alt="" />
+        </div>
+        {% endif %}
+        
+        
+        
+    </div>
+
+    
+{% endfor %}

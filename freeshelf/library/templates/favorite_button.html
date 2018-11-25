@@ -1,0 +1,10 @@
+{% if not liked %}
+<button name="{{ slug }}" class="button medium medium-down-expanded favorite">
+    <i class="fas fa-thumbs-up"></i> Favorite
+</button>
+{% else %}
+<button name="{{ slug }}" class="button medium medium-down-expanded favorite">
+    <i class="fas fa-thumbs-down"></i> Remove
+</button>
+{% endif %}
+
