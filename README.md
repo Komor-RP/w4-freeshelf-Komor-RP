@@ -1,3 +1,5 @@
+# To load inital data, run "python manage.py load_books"
+
 # Freeshelf
 
 This week, you are building a Django application to collect an index of free programming books online. You'll work on this application for the entire week. The end goal is an application that allows users to see a list of all the books, register and log in, and favorite books.
