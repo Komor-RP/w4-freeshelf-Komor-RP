@@ -1,0 +1,54 @@
+{% extends 'form.html' %}
+{% load book_render %}
+
+{% block title %}
+    Book Suggestions - {{ block.super }}
+{% endblock title %}
+{% block content %}
+    <h1>Book Suggestions</h1>
+    <form action="" role="form" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% for field in form %}
+        <div class="fieldWrapper">
+        {{ field.label_tag }} {{ field }}
+        </div>
+    {% endfor %}
+    <button type="submit" class="button">Submit</button>
+    </form>
+        
+    {% if form.errors is not None %}
+        {% for key, error in form.errors.items %}
+            <p>{{ error }}</p>
+        {% endfor %} 
+    {% endif %}
+    
+    {% for suggestion in suggestions %}
+
+    <div class="grid-x book-shelf">
+
+        <div class="cell medium-auto">
+            <h2><strong>Submitted By - {{ suggestion.user }}</strong></h2>
+            <h3>{{ suggestion.title }}</h3>
+            <p>{{ suggestion.author }}</p>
+            <p>{{ suggestion.description }}</p>
+            <button name="{{ suggestion.slug }}" class="button medium medium-down-expanded suggestion" id="confirm">
+                <i class="fas fa-thumbs-up"></i> Confirm
+            </button>
+            <button name="{{ suggestion.slug }}" class="button medium medium-down-expanded suggestion" id="decline">
+                <i class="fas fa-thumbs-down"></i> Decline
+            </button>
+        </div>
+        {% if suggestion.image %}
+        <div class="cell small-12 medium-4">
+            <img src="{{ suggestion.image.url }}" alt="" />
+        </div>
+        {% endif %}
+        
+        
+        
+    </div>
+
+    
+    {% endfor %}
+
+{% endblock content %}

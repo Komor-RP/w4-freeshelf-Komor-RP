@@ -44,12 +44,15 @@
                     </div>
                 {% endfor %}
             </div>
-            <form action="" method="POST" role="form">
-                {% csrf_token %}
-                {{ form.comment.label_tag }}
-                {{ form.comment }}
-                <button type="submit" class="button">Submit</button>
-            </form>
+            {% if user.is_authenticated %}
+                <form action="" method="POST" role="form">
+                    {% csrf_token %}
+                    {{ form.comment.label_tag }}
+                    {{ form.comment }}
+                    <button type="submit" class="button">Submit</button>
+                </form>
+            {% endif %}
+            
             
         </div>
         

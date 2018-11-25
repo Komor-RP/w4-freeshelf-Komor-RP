@@ -20,3 +20,7 @@ class Comment(Timestamp):
     comment = models.TextField()
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+
+class Suggestion(Book):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)

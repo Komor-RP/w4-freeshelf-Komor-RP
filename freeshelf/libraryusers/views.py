@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
-from libraryusers.forms import CustomUserCreationForm
+from libraryusers.forms import CustomUserCreationForm, SuggestionForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
-from libraryusers.models import User, Favorite
+from libraryusers.models import User, Favorite, Suggestion
 from django.contrib.auth.decorators import login_required
 from library.models import Book
 from django.http import HttpResponse, Http404
@@ -106,3 +106,52 @@ def user_profile(request, slug):
         'user': user,
         'comments': comments
     })
+
+
+def suggestions(request):
+    form_class = SuggestionForm
+    suggestions = Suggestion.objects.all()
+
+    if request.method == "POST":
+        form = form_class(data=request.POST, files=request.FILES)
+        if form.is_valid():
+            Suggestion.objects.create(
+                title=form.cleaned_data['title'],
+                author=form.cleaned_data['author'],
+                description=form.cleaned_data['description'],
+                url=form.cleaned_data['url'],
+                image=form.cleaned_data['image'],
+                slug=slugify(form.cleaned_data['title']),
+                user=request.user,
+            )
+
+    form = form_class()
+    return render(request, 'suggestions.html', {
+        'suggestions': suggestions,
+        'form': form
+    })
+
+
+def handle_suggestion(request):
+    if request.method == "POST":
+        confirmation = request.POST['confirmation']
+        suggestion = Suggestion.objects.get(slug=request.POST['book-slug'])
+
+        if confirmation == "confirm":
+            book = Book(
+                    title=suggestion.title,
+                    author=suggestion.author,
+                    description=suggestion.description,
+                    url=suggestion.url,
+                    slug=slugify(suggestion.title)
+            )
+            suggestion.delete()
+            book.save()
+
+            return HttpResponse(json.dumps(["success"]))
+        elif confirmation == "decline":
+            suggestion.delete()
+
+            return HttpResponse(json.dumps(["success"]))
+    else:
+        return Http404()
