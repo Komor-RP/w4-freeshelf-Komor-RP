@@ -12,7 +12,6 @@ from django.contrib.admin.views.decorators import staff_member_required
 
 
 def register(request):
-    categories = Category.objects.all()
     form_class = CustomUserCreationForm
 
     if request.method == "POST":
@@ -38,13 +37,11 @@ def register(request):
 
     form = form_class()
     return render(request, 'register.html', {
-        'categories': categories,
         'form': form
     })
 
 
 def user_login(request):
-    categories = Category.objects.all()
     form_class = AuthenticationForm
 
     if request.method == "POST":
@@ -65,7 +62,6 @@ def user_login(request):
 
     form = form_class()
     return render(request, 'login.html', {
-        'categories': categories,
         'form': form
     })
 
@@ -77,11 +73,9 @@ def user_logout(request):
 
 @login_required
 def favorites(request):
-    categories = Category.objects.all()
     favorites = request.user.favorite_set.all()
     books = [item.book for item in favorites]
     return render(request, 'favorites.html', {
-        'categories': categories,
         'books': books
     })
 
@@ -108,11 +102,9 @@ def favorite_book(request):
 
 
 def user_profile(request, slug):
-    categories = Category.objects.all()
     user = User.objects.get(slug=slug)
     comments = user.comment_set.all()
     return render(request, 'user_profile.html', {
-        'categories': categories,
         'user': user,
         'comments': comments
     })
@@ -120,7 +112,6 @@ def user_profile(request, slug):
 
 @login_required
 def suggestions(request):
-    categories = Category.objects.all()
     form_class = SuggestionForm
     suggestions = Suggestion.objects.all()
 
@@ -139,7 +130,6 @@ def suggestions(request):
 
     form = form_class()
     return render(request, 'suggestions.html', {
-        'categories': categories,
         'suggestions': suggestions,
         'form': form
     })

@@ -1,0 +1,9 @@
+ <div class="top-bar align-center sub-bar">
+            <ul class="menu">
+                {% for category in categories %}
+                <li><a href="{% url 'category_detail' slug=category.slug %}">{{ category.name }}</a></li>
+                {% endfor %}
+
+            </ul>
+        
+        </div>

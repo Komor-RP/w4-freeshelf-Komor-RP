@@ -9,24 +9,22 @@ from django.contrib.admin.views.decorators import staff_member_required
 
 def index(request):
     books = Book.objects.all()
-    categories = Category.objects.all()
+
     return render(request, 'index.html', {
-        'categories': categories,
-        'books': books,
+        'books': books
     })
 
 
 def get_books(request):
     books = Book.objects.all()
-    categories = Category.objects.all()
+
     return render(request, 'books/books.html', {
-        'categories': categories,
-        'books': books,
+        'books': books
     })
 
 
 def book_detail(request, slug):
-    categories = Category.objects.all()
+
     form_class = CommentCreation
     book = Book.objects.get(slug=slug)
     if request.method == "POST":
@@ -40,7 +38,6 @@ def book_detail(request, slug):
     form = form_class()
     comments = book.comment_set.all()
     return render(request, 'books/book_detail.html', {
-        'categories': categories,
         'book': book,
         'form': form,
         'comments': comments
@@ -49,7 +46,6 @@ def book_detail(request, slug):
 
 @staff_member_required
 def edit_book(request, slug):
-    categories = Category.objects.all()
     form_class = BookForm
     book = Book.objects.get(slug=slug)
     if request.method == "POST":
@@ -62,7 +58,6 @@ def edit_book(request, slug):
         form = form_class(instance=book)
 
     return render(request, 'books/edit_book.html', {
-        'categories': categories,
         'book': book,
         'form': form
     })
@@ -70,7 +65,6 @@ def edit_book(request, slug):
 
 @staff_member_required
 def create_book(request):
-    categories = Category.objects.all()
     form_class = BookForm
 
     if request.method == "POST":
@@ -85,7 +79,6 @@ def create_book(request):
         form = form_class()
 
     return render(request, 'books/create_book.html', {
-        'categories': categories,
         'form': form
     })
 
@@ -97,7 +90,6 @@ def delete_book(request, slug):
 
 
 def sort_books(request):
-    categories = Category.objects.all()
     if request.method == "GET":
         if request.is_ajax():
             user = request.user
@@ -108,7 +100,6 @@ def sort_books(request):
                 books = books.order_by('-created')
 
             return render(request, 'books/book_render.html', {
-                'categories': categories,
                 'user': user,
                 'books': books
             })
@@ -122,11 +113,9 @@ def categories(request):
 
 
 def category_detail(request, slug):
-    categories = Category.objects.all()
     category = Category.objects.get(slug=slug)
     books = category.books.all
     return render(request, 'category/category_detail.html', {
-        'categories': categories,
         'category': category,
         'books': books
     })
