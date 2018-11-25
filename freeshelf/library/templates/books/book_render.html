@@ -23,6 +23,12 @@
             <a class="button medium medium-down-expanded" href="{{ book.url }}" target="_blank">
                 <i class="fas fa-book-open"></i> Link to Book
             </a>
+            {% if user.is_staff %}
+                <br/>
+                <a class="button medium medium-down-expanded" href="{% url 'edit_book' slug=book.slug %}"><i class="fas fa-edit"></i></a>
+                <a class="button medium medium-down-expanded" href="{% url 'delete_book' slug=book.slug %}"><i class="fas fa-trash-alt"></i></a>
+            {% endif %}
+            
         </div>
         {% if book.image %}
         <div class="cell small-12 medium-4">

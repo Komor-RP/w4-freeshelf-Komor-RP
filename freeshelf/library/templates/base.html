@@ -25,14 +25,26 @@
         <div class="top-bar align-center">
             <ul class="menu">
                 <li><a href="{% url 'all_books' %}">All Books</a></li>
-                <li><a href="{% url 'categories' %}">All Categories</a></li>
+                {% if user.is_staff %}
+                <li><a href="{% url 'create_book' %}">Add Book</a></li>
+                {% endif %}
                 {% if user.is_authenticated %}
+                <li><a href="{% url 'suggestions' %}">Suggestions</a></li>
                 <li><a href="{% url 'favorites' %}">Favorites</a></li>
-                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
                 {% else %}
                     <li><a href="{% url 'register' %}">Register</a></li>
                     <li><a href="{% url 'login' %}">Login</a></li>
                 {% endif %}
+
+            </ul>
+        
+        </div>
+        <div class="top-bar align-center sub-bar">
+            <ul class="menu">
+                {% for category in categories %}
+                <li><a href="{% url 'category_detail' slug=category.slug %}">{{ category.name }}</a></li>
+                {% endfor %}
 
             </ul>
         

@@ -40,6 +40,20 @@ h1 {
     padding: 15px 20px;
     margin: 15px auto;
 }
+.top-bar {
+    background-color: #efeeec;
+}
+.sub-bar {
+    font-size: .95rem;
+    background-color: #dcebff;
+}
+.top-bar ul{
+    background-color: inherit;
+}
+.sub-bar .menu a{
+    padding: .3rem .5rem;
+    line-height: .5;
+}
 
 @media (min-width: 1200px) {
     .book-shelf, .comment-section {
